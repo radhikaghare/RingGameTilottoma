@@ -45,13 +45,15 @@ function draw() {
     tower3pressed = false;
   }*/
 
+  text("X " + World.mouseX +"Y " + World.mouseY, World.mouseX,World.mouseY);
   console.log("RIng1 at start"+ ring1.x + ring1.y)
   if(mousePressedOver(ring1) && ring1.x !=200){
+    ring1OnTower = true
     ring1.y = 100; 
   }
 
   console.log("before tower pressed"+ ring1.x + ring1.y)
-  if (mousePressedOver(tower2) && ring1.y === 100 && ring1.x === 110){
+  if (mousePressedOver(tower2) && ring1OnTower === true/* ring1.y < 110 && ring1.x === 110*/ ){
     ring1.x = 200;
     ring1.y = 300;
   }
