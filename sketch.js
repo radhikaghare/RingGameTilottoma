@@ -1,9 +1,12 @@
+
+
 var tower1,tower2,tower3,base;
 var ring1,ring2,ring3;
 
-var tower1pressed;
+var ring1OnFirstTower = false ,ring1OnSecondTower = false ,ring1OnThirdTower  = false ;
+var ring2OnFirstTower  = false , ring2OnSecondTower = false ,ring2OnThirdTower = false ;
 
-
+var ring3OnFirstTower  = false , ring3OnSecondTower = false ,ring3OnThirdTower = false ;
 
 function setup() {
   createCanvas(500, 500);
@@ -27,86 +30,71 @@ function setup() {
 function draw() {
   background(220);
 
-  /*if(mousePresedOver(tower1)){
-    tower1pressed = true;
-  } else  {
-    tower1pressed = false;
-  }
-
-  if(mousePresedOver(tower2)){
-    tower2pressed = true;
-  } else{
-    tower2pressed = false;
-  }
-
-  if(mousePresedOver(tower3)){
-    tower3pressed = true;
-  }else {
-    tower3pressed = false;
-  }*/
-
   text("X " + World.mouseX +"Y " + World.mouseY, World.mouseX,World.mouseY);
-  console.log("RIng1 at start"+ ring1.x + ring1.y)
-  if(mousePressedOver(ring1) && ring1.x !=200){
-    ring1OnTower = true
+  
+  /*************ring 1**************** */
+  if(mousePressedOver(ring2) && ring1.x !=200){
+    ring1OnFirstTower = true
     ring1.y = 100; 
   }
 
-  console.log("before tower pressed"+ ring1.x + ring1.y)
-  if (mousePressedOver(tower2) && ring1OnTower === true/* ring1.y < 110 && ring1.x === 110*/ ){
+  
+  if (mousePressedOver(tower2) && ring1OnFirstTower === true ){
     ring1.x = 200;
     ring1.y = 300;
+    sleep(500)
+    ring1OnSecondTower =  true;
+    ring1OnFirstTower = false;
   }
 
-  console.log("before ring pressed"+ ring1.x + ring1.y)
-  console.log("RIng1 at start"+ ring1.y + ring1.x)
-  if(mousePressedOver(ring1) && ring1.x === 200 && ring1.y ===300){
+ 
+  //console.log("RIng1 at start"+ ring1.y + ring1.x)
+  if(mousePressedOver(ring1) && ring1OnSecondTower === true){
+    console.log("inside ring pressed")
     ring1.x = 200;
     ring1.y = 90;
   }
 
+  if (mousePressedOver(tower3) && ring1OnFirstTower === true )
+    {
+      ring1.x = 300;
+      ring1.y = 294;
 
-/*if(mousePressedOver(tower1) && ring1.y<169){
- if(ring1.y === 280){
-   ring1.y = 170;
-   ring1.x =150
- } else{
-ring1.x = 150;
+      ring1OnThirdTower = true;
+      ring1OnSecondTower = false;
+      ring1OnFirstTower = false;
+    }
 
- }
-}
-/*if(mousePressedOver(ring2) && ring2.x<ring1.x){
-  ring2.y = 200;
-}
-if (mousePressedOver(tower2) && ring2.x<ring1.x){
-  ring2.x = 200;
-  ring2.y = 280;
-}
-if(mousePressedOver(tower3) && ring2.x<ring1.x){
-  ring2.x = 250;
-  ring2.y = 280;
-}
-/*if(mousePressedOver(tower1) && ring2.y==260) {
-  ring2.x = 150;
-  ring2.y = 280;
-}
-if (mousePressedOver(ring3)){
-  ring3.y =200
-}
-if (mousePressedOver(tower2) && ring3.y==280){
-  ring3.x = 200;
-  ring3.y = 280;
-}
-if(mousePressedOver(tower3) && ring3.y==280){
-  ring3.x = 250;
-  ring3.y = 280;
-}
-if(mousePressedOver(tower1) && ring3.y==280){
-  ring3.x = 150;
-  ring3.y = 280;
-}*/
+    if (mousePressedOver(tower3) && ring1OnSecondTower === true ){
+      ring1.x = 300;
+      ring1.y = 294;
 
+      sleep(1000)
+
+      ring1OnThirdTower = true;
+      ring1OnSecondTower = false;
+      ring1OnFirstTower = false;
+    }
+
+
+    if(mousePressedOver(ring1) && ring1OnThirdTower === true  ){
+      ring1.x = 300;
+      ring1.y = 90;
+    }
+
+    /*************ring 1**************** */
+
+  
 
   drawSprites();
 }
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
 
